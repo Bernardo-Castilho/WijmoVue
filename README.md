@@ -14,7 +14,10 @@ Wijmo is also compact, powerful and flexible. The two libraries are a great matc
 You can read more about Wijmo 5
 [here](http://wijmo.com/products/wijmo-5/).
 
-This sample shows how you can easily encapsulate Wijmo controls into Vue components.
+This [sample](http://bernardo-castilho.github.io/WijmoVue/default.htm)
+shows how you can easily encapsulate Wijmo controls into Vue components.
 It has a main component that contains some random data, and several Wijmo-based 
 components bound to the same data. If you use any control to modify the data, the
 changes are automatically reflected on all other controls on the page.
+
+The **wijmo.vue.js** file contains all the Wijmo-Vue component definitions.
