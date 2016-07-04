@@ -28,7 +28,12 @@ h3 {
 h1, h2, h3, h4, h5, h6 {
     color: #35495E;
 }
-
+.container .wj-control {
+    margin-bottom: 14pt;
+}
+tr>td:first-child {
+    font-weight: bold;
+}
 
 .wj-calendar {
     max-width: 400px;
@@ -47,7 +52,4 @@ h1, h2, h3, h4, h5, h6 {
 .wj-flexchart {
     max-width: 600px;
     margin: auto;
-}
-.container .wj-control {
-    margin-bottom: 14pt;
 }
