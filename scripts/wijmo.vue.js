@@ -6,23 +6,29 @@ var wijmo;
     var vue;
     (function (vue) {
         // get an array with a control's properties and events
-        function getProps(controlClass, extraProps) {
-            var p = ['control', 'initialized']; // 'special' members
-            for (var prototype = controlClass.prototype; prototype; prototype = prototype.__proto__) {
-                for (var prop in prototype) {
-                    if (prop[0] != '_' && prop != 'constructor') {
-                        if (prop.match(/\bon[A-Z]/)) {
+        function getProps(ctlClass, extraProps) {
+            // start with 'special' members
+            var p = ['control', 'initialized'];
+            // add properties and events on this class and all ancestors
+            for (var proto = ctlClass.prototype; proto != Object.prototype; proto = Object.getPrototypeOf(proto)) {
+                var props = Object.getOwnPropertyNames(proto);
+                for (var i = 0; i < props.length; i++) {
+                    var prop = props[i], pd = Object.getOwnPropertyDescriptor(proto, prop), eventRaiser = prop.match(/^on[A-Z]/);
+                    if (pd.set || eventRaiser) {
+                        if (eventRaiser) {
                             prop = prop[2].toLowerCase() + prop.substr(3);
                         }
-                        if (p.indexOf(prop) < 0) {
+                        if (p.indexOf(prop) < 0 && !prop.match(/disabled|required/)) {
                             p.push(prop);
                         }
                     }
                 }
             }
+            // add extra properties
             if (extraProps) {
                 Array.prototype.push.apply(p, extraProps);
             }
+            // done
             return p;
         }
         vue.getProps = getProps;
